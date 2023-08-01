@@ -15,8 +15,7 @@ body {
 header {
   padding: 10px 20px;
   width: 100%;
-  max-width: 800px;
-  background: rgb(63, 94, 251);
+  max-width: 850px;
   background: radial-gradient(
     circle,
     rgba(63, 94, 251, 1) 0%,
@@ -29,6 +28,7 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  color: white;
 }
 
 .nav-left {
@@ -49,21 +49,50 @@ h3 {
   font-weight: 500;
 }
 
-.form--btn {
-  background-image: url("../src/assets/images/trollface.png");
-  background-position: right;
-  background-size: contain;
-  background-repeat: no-repeat;
-  min-width: 135px;
-  padding-right: 15px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+main {
+  padding: 20px;
+  width: 100%;
+  max-width: 850px;
+}
+
+form {
+  display: grid;
+  grid-template: 40px 40px / 1fr 1fr;
+  gap: 15px;
+}
+
+.form--input {
+  font-family: "Barlow", sans-serif;
+  text-indent: 10px;
   border: 1px solid black;
   border-radius: 5px;
 }
 
-.btn-logo {
-  max-width: 20px;
-  align-self: center;
-  vertical-align: center;
+.form--btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-family: "Barlow", sans-serif;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  grid-column: 1 / -1;
+  background: radial-gradient(
+    circle,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(252, 70, 107, 1) 100%
+  );
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.75px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn--logo {
+  max-height: 28px;
+  filter: brightness(0.3) invert(1);
 }
