@@ -1,1 +1,3 @@
-# meme-generator-react-app
+# Meme generator app
+
+## usign React.JS
