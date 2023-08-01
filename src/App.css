@@ -96,3 +96,12 @@ form {
   max-height: 28px;
   filter: brightness(0.3) invert(1);
 }
+
+.meme-container {
+  width: 100%;
+  max-width: 810px;
+}
+
+.meme-container img {
+  width: 100%;
+}
