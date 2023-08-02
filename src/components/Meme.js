@@ -1,11 +1,20 @@
 import React from "react";
 import mockData from "../components/mockData";
 import trollface from "../assets/images/trollface.png";
+import defaultImg from "../assets/images/default-img.jpg";
 
 const Meme = () => {
   const source = "https://api.imgflip.com/get_memes";
-  let memeUrl, memeKey, memeAlt;
-  const [memeImg, setMemeImg] = React.useState("");
+
+  const [meme, setMeme] = React.useState({
+    topText: "",
+    bottomText: "",
+    randomImg: defaultImg,
+    key: "",
+    alt: "",
+  });
+
+  const [allMemeImages, setAllMemeImages] = React.useState(mockData);
 
   // const getData = async function (source) {
   //   try {
@@ -24,14 +33,21 @@ const Meme = () => {
   //   }
   // };
 
-  const getMemeImg = () => {
+  const getMemeImage = () => {
     const memesArr = mockData.data.memes;
     const randomIndex = Math.floor(Math.random() * memesArr.length) + 1;
     const randomMemeObj = memesArr[randomIndex];
-    memeUrl = randomMemeObj.url;
-    memeAlt = randomMemeObj.name;
-    memeKey = randomMemeObj.id;
-    setMemeImg(memeUrl);
+
+    let memeUrl = randomMemeObj.url;
+    let memeAlt = randomMemeObj.name;
+    let memeKey = randomMemeObj.id;
+
+    setMeme((prev) => ({
+      ...prev,
+      randomImg: memeUrl,
+      key: memeKey,
+      alt: memeAlt,
+    }));
   };
 
   return (
@@ -40,13 +56,18 @@ const Meme = () => {
       <form>
         <input type="text" className="form--input" placeholder="top text" />
         <input type="text" className="form--input" placeholder="bottom text" />
-        <button className="form--btn" type="button" onClick={getMemeImg}>
+        <button className="form--btn" type="button" onClick={getMemeImage}>
           Get new meme
           <img src={trollface} alt="trollface" className="btn--logo" />
         </button>
       </form>
       <div className="meme-container">
-        <img src={memeImg} alt={memeAlt} className="memeImg" />
+        <img
+          src={meme.randomImg}
+          alt={meme.alt}
+          key={meme.key}
+          className="memeImg"
+        />
       </div>
     </main>
   );
