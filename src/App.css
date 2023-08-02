@@ -30,6 +30,8 @@ header {
   border-right: 1px solid #212529;
   border-top: 1px solid #212529;
   border-left: 1px solid #212529;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 nav {
@@ -70,6 +72,8 @@ main {
   border-left: 1px solid #212529;
   padding-top: 10px;
   background-color: #e9ecef;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 form {
