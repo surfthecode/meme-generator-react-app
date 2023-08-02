@@ -5,8 +5,9 @@ import trollface from "../assets/images/trollface.png";
 const Meme = () => {
   const source = "https://api.imgflip.com/get_memes";
   let memeUrl, memeKey, memeAlt;
+  const [memeImg, setMemeImg] = React.useState("");
 
-  // const getMemeImg = async function (source) {
+  // const getData = async function (source) {
   //   try {
   //     const response = await fetch(source);
   //     console.log(response);
@@ -30,10 +31,12 @@ const Meme = () => {
     memeUrl = randomMemeObj.url;
     memeAlt = randomMemeObj.name;
     memeKey = randomMemeObj.id;
+    setMemeImg(memeUrl);
   };
 
   return (
     <main>
+      <h3>Create your own meme</h3>
       <form>
         <input type="text" className="form--input" placeholder="top text" />
         <input type="text" className="form--input" placeholder="bottom text" />
@@ -43,7 +46,7 @@ const Meme = () => {
         </button>
       </form>
       <div className="meme-container">
-        <img src={memeUrl} alt={memeAlt} />
+        <img src={memeImg} alt={memeAlt} className="memeImg" />
       </div>
     </main>
   );

@@ -9,8 +9,6 @@ const Header = () => {
           <img src={logo} alt="meme generator logo" className="logo" />
           <h2>The meme generator</h2>
         </div>
-
-        <h3>create your own meme</h3>
       </nav>
     </header>
   );
