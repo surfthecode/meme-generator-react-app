@@ -60,6 +60,8 @@ const Meme = () => {
       </form>
       <div className="meme-container">
         <img src={meme.randomImg} alt={meme.alt} className="memeImg" />
+        <h4 className="meme--text top">One does not simply</h4>
+        <h4 className="meme--text bottom">Walk into Mordor</h4>
       </div>
     </main>
   );
