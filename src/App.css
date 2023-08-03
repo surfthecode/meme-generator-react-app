@@ -20,8 +20,7 @@ body {
 
 header {
   padding: 10px 20px;
-  width: 100%;
-  max-width: 500px;
+  width: 500px;
   background: radial-gradient(
     circle,
     rgba(63, 94, 251, 1) 0%,
@@ -65,8 +64,8 @@ h3 {
 
 main {
   padding: 0px 20px 20px 20px;
-  width: 100%;
-  max-width: 500px;
+  width: 500px;
+  height: 550px;
   border-right: 1px solid #212529;
   border-bottom: 1px solid #212529;
   border-left: 1px solid #212529;
@@ -119,16 +118,14 @@ form {
 }
 
 .meme-container {
-  width: 100%;
-  max-width: 450px;
+  margin-top: 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
 .meme-container img {
-  margin-top: 20px;
   max-width: 100%;
-  max-height: 400px;
+  max-height: 380px;
 }

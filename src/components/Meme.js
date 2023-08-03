@@ -10,7 +10,6 @@ const Meme = () => {
     topText: "",
     bottomText: "",
     randomImg: defaultImg,
-    key: "",
     alt: "",
   });
 
@@ -40,12 +39,10 @@ const Meme = () => {
 
     let memeUrl = randomMemeObj.url;
     let memeAlt = randomMemeObj.name;
-    let memeKey = randomMemeObj.id;
 
     setMeme((prev) => ({
       ...prev,
       randomImg: memeUrl,
-      key: memeKey,
       alt: memeAlt,
     }));
   };
@@ -62,12 +59,7 @@ const Meme = () => {
         </button>
       </form>
       <div className="meme-container">
-        <img
-          src={meme.randomImg}
-          alt={meme.alt}
-          key={meme.key}
-          className="memeImg"
-        />
+        <img src={meme.randomImg} alt={meme.alt} className="memeImg" />
       </div>
     </main>
   );
