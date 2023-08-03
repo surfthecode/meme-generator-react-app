@@ -73,6 +73,7 @@ main {
   background-color: #e9ecef;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  position: relative;
 }
 
 form {
@@ -154,4 +155,24 @@ form {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.download {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(
+    circle,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(252, 70, 107, 1) 100%
+  );
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.download img {
+  filter: brightness(0.3) invert(1);
 }

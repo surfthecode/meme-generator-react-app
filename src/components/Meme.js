@@ -3,6 +3,7 @@ import * as htmlToImage from "html-to-image";
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
 import trollface from "../assets/images/trollface.png";
 import defaultImg from "../assets/images/default-img.jpg";
+import downloadIcon from "../assets/icons/download.svg";
 
 const Meme = () => {
   const source = "https://api.imgflip.com/get_memes";
@@ -44,6 +45,24 @@ const Meme = () => {
     setMeme((prev) => ({ ...prev, [name]: value }));
   };
 
+  const memeRef = useRef(null);
+
+  const saveMeme = () => {
+    // get the meme container element
+    const memeElement = memeRef.current;
+    // convert it to png blob
+    htmlToImage
+      .toPng(memeElement)
+      .then(function (blob) {
+        // download it as a file
+        htmlToImage.download(blob, "meme.png");
+      })
+      .catch(function (error) {
+        // handle any errors
+        console.error("oops, something went wrong!", error);
+      });
+  };
+
   return (
     <main>
       <h3>Create your own meme</h3>
@@ -69,10 +88,13 @@ const Meme = () => {
           <img src={trollface} alt="trollface" className="btn--logo" />
         </button>
       </form>
-      <div className="meme-container">
+      <div className="meme-container" ref={memeRef}>
         <img src={meme.randomImg} alt={meme.alt} className="memeImg" />
         <h4 className="meme--text top">{meme.topText}</h4>
         <h4 className="meme--text bottom">{meme.bottomText}</h4>
+      </div>
+      <div className="download" onClick={saveMeme}>
+        <img src={downloadIcon} alt="download-icon" />
       </div>
     </main>
   );
