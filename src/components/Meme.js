@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import * as htmlToImage from "html-to-image";
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
 import trollface from "../assets/images/trollface.png";
 import defaultImg from "../assets/images/default-img.jpg";
 
