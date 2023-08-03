@@ -47,12 +47,31 @@ const Meme = () => {
     }));
   };
 
+  const handleChange = function (event) {
+    const { name, value } = event.target;
+    setMeme((prev) => ({ ...prev, [name]: value }));
+  };
+
   return (
     <main>
       <h3>Create your own meme</h3>
       <form>
-        <input type="text" className="form--input" placeholder="top text" />
-        <input type="text" className="form--input" placeholder="bottom text" />
+        <input
+          type="text"
+          className="form--input"
+          placeholder="top text"
+          name="topText"
+          value={meme.topText}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          className="form--input"
+          placeholder="bottom text"
+          name="bottomText"
+          value={meme.bottomText}
+          onChange={handleChange}
+        />
         <button className="form--btn" type="button" onClick={getMemeImage}>
           Get new meme
           <img src={trollface} alt="trollface" className="btn--logo" />
@@ -60,8 +79,8 @@ const Meme = () => {
       </form>
       <div className="meme-container">
         <img src={meme.randomImg} alt={meme.alt} className="memeImg" />
-        <h4 className="meme--text top">One does not simply</h4>
-        <h4 className="meme--text bottom">Walk into Mordor</h4>
+        <h4 className="meme--text top">{meme.topText}</h4>
+        <h4 className="meme--text bottom">{meme.bottomText}</h4>
       </div>
     </main>
   );
