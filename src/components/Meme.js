@@ -1,41 +1,31 @@
-import React from "react";
-import mockData from "../components/mockData";
+import React, { useState, useEffect } from "react";
 import trollface from "../assets/images/trollface.png";
 import defaultImg from "../assets/images/default-img.jpg";
 
 const Meme = () => {
   const source = "https://api.imgflip.com/get_memes";
 
-  const [meme, setMeme] = React.useState({
+  const [meme, setMeme] = useState({
     topText: "",
     bottomText: "",
     randomImg: defaultImg,
     alt: "",
   });
 
-  const [allMemeImages, setAllMemeImages] = React.useState(mockData);
+  const [allMemes, setAllMemes] = useState([]);
 
-  // const getData = async function (source) {
-  //   try {
-  //     const response = await fetch(source);
-  //     console.log(response);
-  //     const data = await response.json();
-  //     console.log(data);
-
-  //     if (!response.success) {
-  //       alert("Server error:", response.error_message);
-  //     } else {
-  //       console.log(data);
-  //     }
-  //   } catch (error) {
-  //     console.log("Fetch error:", error);
-  //   }
-  // };
+  useEffect(() => {
+    async function getData() {
+      const response = await fetch(source);
+      const data = await response.json();
+      setAllMemes(data.data.memes);
+    }
+    getData();
+  }, []);
 
   const getMemeImage = () => {
-    const memesArr = mockData.data.memes;
-    const randomIndex = Math.floor(Math.random() * memesArr.length) + 1;
-    const randomMemeObj = memesArr[randomIndex];
+    const randomIndex = Math.floor(Math.random() * allMemes.length) + 1;
+    const randomMemeObj = allMemes[randomIndex];
 
     let memeUrl = randomMemeObj.url;
     let memeAlt = randomMemeObj.name;
