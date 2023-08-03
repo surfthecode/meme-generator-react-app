@@ -130,28 +130,31 @@ form {
 .meme-container img {
   max-width: 100%;
   max-height: 380px;
+  object-fit: contain;
 }
 
 .meme--text {
   position: absolute;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-size: 32px;
+  font-size: 38px;
   color: white;
   -webkit-text-stroke: 1px #212529;
   text-align: center;
+  text-transform: uppercase;
+  width: 100%;
 }
 
 .meme--text.top {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .meme--text.bottom {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);

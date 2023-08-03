@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as htmlToImage from "html-to-image";
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
+import { saveAs } from "file-saver";
 import trollface from "../assets/images/trollface.png";
 import defaultImg from "../assets/images/default-img.jpg";
 import downloadIcon from "../assets/icons/download.svg";
@@ -52,10 +53,10 @@ const Meme = () => {
     const memeElement = memeRef.current;
     // convert it to png blob
     htmlToImage
-      .toPng(memeElement)
+      .toBlob(memeElement) // use toBlob instead of toPng
       .then(function (blob) {
-        // download it as a file
-        htmlToImage.download(blob, "meme.png");
+        // download it as a file using saveAs
+        saveAs(blob, "meme.png");
       })
       .catch(function (error) {
         // handle any errors
@@ -90,8 +91,8 @@ const Meme = () => {
       </form>
       <div className="meme-container" ref={memeRef}>
         <img src={meme.randomImg} alt={meme.alt} className="memeImg" />
-        <h4 className="meme--text top">{meme.topText}</h4>
-        <h4 className="meme--text bottom">{meme.bottomText}</h4>
+        <p className="meme--text top">{meme.topText}</p>
+        <p className="meme--text bottom">{meme.bottomText}</p>
       </div>
       <div className="download" onClick={saveMeme}>
         <img src={downloadIcon} alt="download-icon" />
