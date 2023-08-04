@@ -73,6 +73,7 @@ main {
   padding: 20px 20px 20px 20px;
   width: 500px;
   height: 580px;
+  /* height: 650px; */
   border-right: 1px solid #212529;
   border-bottom: 1px solid #212529;
   border-left: 1px solid #212529;
@@ -121,7 +122,7 @@ form {
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 0.75px;
-  color: white;
+  color: #fff;
   cursor: pointer;
 }
 
@@ -131,10 +132,6 @@ form {
 }
 
 .meme-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   position: relative;
 }
 
@@ -148,7 +145,7 @@ form {
   position: absolute;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 38px;
-  color: white;
+  color: #fff;
   -webkit-text-stroke: 1px #212529;
   text-align: center;
   text-transform: uppercase;
@@ -159,16 +156,16 @@ form {
   margin-top: 0px;
   margin-bottom: 0px;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  cursor: move;
 }
 
 .meme--text.bottom {
   margin-top: 0px;
   margin-bottom: 0px;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  cursor: move;
 }
 
 .download {
@@ -190,3 +187,50 @@ form {
 .download img {
   filter: brightness(0.3) invert(1);
 }
+
+/* .sliders {
+  width: 50%;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.horizontal-slider {
+  width: 100%;
+  max-width: 150px;
+  height: 10px;
+  margin: auto;
+}
+.example-thumb {
+  cursor: pointer;
+  position: absolute;
+  z-index: 100;
+  background: #ffffff;
+  border: 5px solid #3774ff;
+  border-radius: 100%;
+  display: block;
+  box-shadow: 0 0 2px 0 rgb(0 0 0 / 44%);
+}
+.example-thumb.active {
+  background-color: grey;
+}
+.example-track {
+  position: relative;
+  background: #ddd;
+}
+.example-track.example-track-0 {
+  background: #83a9ff;
+}
+.horizontal-slider .example-track {
+  top: 0px;
+  height: 10px;
+}
+.horizontal-slider .example-thumb {
+  top: 12px;
+  width: 10px;
+  outline: none;
+  height: 10px;
+  line-height: 38px;
+} */
