@@ -46,21 +46,23 @@ const Meme = () => {
     setMeme((prev) => ({ ...prev, [name]: value }));
   };
 
+  //access the HTML element that contains the meme image by using the useRef hook which is a way to store a reference to a value that persists across renders
   const memeRef = useRef(null);
 
   const saveMeme = () => {
     // get the meme container element
     const memeElement = memeRef.current;
-    // convert it to png blob
+
+    // calling htmlToImage.toBlob method on the meme element returns a promise that resolves with a blob object containing the image data in PNG format.
     htmlToImage
-      .toBlob(memeElement) // use toBlob instead of toPng
+      .toBlob(memeElement) //  blob = binary large object used to store files in memory or transfer them over the network
       .then(function (blob) {
-        // download it as a file using saveAs
+        // download the blob to a file
         saveAs(blob, "meme.png");
       })
       .catch(function (error) {
-        // handle any errors
-        console.error("oops, something went wrong!", error);
+        // handle errors during conversion or download
+        alert("oops, something went wrong!", error);
       });
   };
 
