@@ -167,7 +167,7 @@ form {
 
 .download {
   position: absolute;
-  bottom: 20px;
+  bottom: 30px;
   right: 20px;
   width: 40px;
   height: 40px;
@@ -308,7 +308,6 @@ h4 {
   }
 
   .download {
-    bottom: 25px;
     background: unset;
     background-color: #e9ecef;
     border: 1px solid #212529;
@@ -338,6 +337,11 @@ h4 {
     padding-top: 10px;
     padding-bottom: 10px;
   }
+
+  h3 {
+    margin-top: 10px;
+  }
+
   form {
     grid-template: 40px 40px 40px / 1fr;
     gap: 10px;
@@ -350,9 +354,5 @@ h4 {
   .meme-container {
     justify-content: flex-start;
     height: 360px;
-  }
-
-  .download {
-    bottom: 50px;
   }
 }
