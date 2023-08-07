@@ -75,7 +75,7 @@ const Meme = () => {
 
   return (
     <main>
-      <h3>Create your own meme</h3>
+      <h3>Get new meme. Type in and position the text. Save and enjoy!</h3>
 
       <form>
         <input
