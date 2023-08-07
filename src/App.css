@@ -144,28 +144,24 @@ form {
 .meme--text {
   position: absolute;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-size: 38px;
+  font-size: 44px;
   color: #fff;
   -webkit-text-stroke: 1px #212529;
   text-align: center;
   text-transform: uppercase;
-  width: 100%;
+  cursor: move;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .meme--text.top {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  top: 0;
   left: 0;
-  cursor: move;
+  top: 0;
 }
 
 .meme--text.bottom {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  bottom: 0;
   left: 0;
-  cursor: move;
+  bottom: 0;
 }
 
 .download {
@@ -187,50 +183,3 @@ form {
 .download img {
   filter: brightness(0.3) invert(1);
 }
-
-/* .sliders {
-  width: 50%;
-  align-self: flex-start;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.horizontal-slider {
-  width: 100%;
-  max-width: 150px;
-  height: 10px;
-  margin: auto;
-}
-.example-thumb {
-  cursor: pointer;
-  position: absolute;
-  z-index: 100;
-  background: #ffffff;
-  border: 5px solid #3774ff;
-  border-radius: 100%;
-  display: block;
-  box-shadow: 0 0 2px 0 rgb(0 0 0 / 44%);
-}
-.example-thumb.active {
-  background-color: grey;
-}
-.example-track {
-  position: relative;
-  background: #ddd;
-}
-.example-track.example-track-0 {
-  background: #83a9ff;
-}
-.horizontal-slider .example-track {
-  top: 0px;
-  height: 10px;
-}
-.horizontal-slider .example-thumb {
-  top: 12px;
-  width: 10px;
-  outline: none;
-  height: 10px;
-  line-height: 38px;
-} */

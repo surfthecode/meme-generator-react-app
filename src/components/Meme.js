@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import ReactSlider from "react-slider";
-import Draggable, { DraggableCore } from "react-draggable";
+import Draggable from "react-draggable";
 
 import * as htmlToImage from "html-to-image";
-import { toBlob } from "html-to-image";
 import { saveAs } from "file-saver";
 
 import trollface from "../assets/images/trollface.png";
@@ -75,23 +73,6 @@ const Meme = () => {
   const topTextRef = useRef(null);
   const bottomTextRef = useRef(null);
 
-  //Change text font size and color
-  const [textSize, setTextSize] = useState(38);
-  const [textColor, setTextColor] = useState("#fff");
-
-  // Handle font size change
-  const handleTextSizeChange = (value) => {
-    setTextSize(value);
-  };
-
-  //Handle text color change
-  const handleTextColorChange = (value) => {
-    // Convert the value from an array of RGB values to a hex string
-    const hexColor =
-      "#" + value.map((v) => v.toString(16).padStart(2, "0")).join("");
-    setTextColor(hexColor);
-  };
-
   return (
     <main>
       <h3>Create your own meme</h3>
@@ -121,46 +102,20 @@ const Meme = () => {
 
       <div className="meme-container" ref={memeRef}>
         <img src={meme.randomImg} alt={meme.alt} className="memeImg" />
-        <div>
-          <Draggable bounds={{ left: -100, top: 0, right: 100, bottom: 150 }}>
-            <p className="meme--text top" ref={topTextRef}>
-              {meme.topText}
-            </p>
-          </Draggable>
 
-          <Draggable bounds={{ left: -100, top: -150, right: 100, bottom: 0 }}>
-            <p className="meme--text bottom" ref={bottomTextRef}>
-              {meme.bottomText}
-            </p>
-          </Draggable>
-        </div>
+        <Draggable bounds="parent">
+          <p className="meme--text top" ref={topTextRef}>
+            {meme.topText}
+          </p>
+        </Draggable>
+
+        <Draggable bounds="parent">
+          <p className="meme--text bottom" ref={bottomTextRef}>
+            {meme.bottomText}
+          </p>
+        </Draggable>
       </div>
-      {/* <div className="sliders">
-        <label>Text size:</label>
-        <ReactSlider
-          className="horizontal-slider"
-          thumbClassName="example-thumb"
-          trackClassName="example-track"
-          value={textSize}
-          onChange={handleTextSizeChange}
-          min={10}
-          max={30}
-        />
-        <label>Text color:</label>
-        <ReactSlider
-          className="horizontal-slider"
-          thumbClassName="example-thumb"
-          trackClassName="example-track"
-          value={[
-            parseInt(textColor.slice(1, 3), 16),
-            parseInt(textColor.slice(3, 5), 16),
-            parseInt(textColor.slice(5, 7), 16),
-          ]}
-          onChange={handleTextColorChange}
-          min={0}
-          max={255}
-        />
-      </div> */}
+
       <div className="download" onClick={saveMeme}>
         <img src={downloadIcon} alt="download-icon" />
       </div>
