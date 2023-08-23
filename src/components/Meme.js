@@ -43,7 +43,7 @@ const Meme = () => {
     }));
   };
 
-  const handleChange = function (event) {
+  const handleInputChange = function (event) {
     const { name, value } = event.target;
     setMeme((prev) => ({ ...prev, [name]: value }));
   };
@@ -65,7 +65,7 @@ const Meme = () => {
       })
       .catch(function (error) {
         // handle errors during conversion or download
-        alert("oops, something went wrong!", error);
+        alert("oops, something went wrong:", error);
       });
   };
 
@@ -73,18 +73,20 @@ const Meme = () => {
   const topTextRef = useRef(null);
   const bottomTextRef = useRef(null);
 
+  
+  
   return (
     <main>
       <h3>Get new meme. Type in and position the text. Save and enjoy!</h3>
 
       <form>
-        <input
+               <input
           type="text"
           className="form--input"
           placeholder="top text"
           name="topText"
           value={meme.topText}
-          onChange={handleChange}
+          onChange={handleInputChange}
         />
         <input
           type="text"
@@ -92,7 +94,7 @@ const Meme = () => {
           placeholder="bottom text"
           name="bottomText"
           value={meme.bottomText}
-          onChange={handleChange}
+          onChange={handleInputChange}
         />
         <button className="form--btn" type="button" onClick={getMemeImage}>
           Get new meme
