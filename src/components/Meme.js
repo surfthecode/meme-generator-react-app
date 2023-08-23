@@ -11,116 +11,155 @@ import downloadIcon from "../assets/icons/download.svg";
 const Meme = () => {
   const source = "https://api.imgflip.com/get_memes";
 
-  const [meme, setMeme] = useState({
-    topText: "",
-    bottomText: "",
-    randomImg: defaultImg,
-    alt: "",
-  });
+  const [memes, setMemes] = useState([]);
+  const [meme, setMeme] = useState("");
+  const [topText, setTopText] = useState("");
+  const [bottomText, setBottomText] = useState("");
 
-  const [allMemes, setAllMemes] = useState([]);
+  const memeRef = useRef();
 
   useEffect(() => {
-    async function getData() {
-      const response = await fetch(source);
-      const data = await response.json();
-      setAllMemes(data.data.memes);
-    }
-    getData();
+    fetch(source)
+      .then((response) => response.json())
+      .then((data) => setMemes(data.data.memes));
   }, []);
 
-  const getMemeImage = () => {
-    const randomIndex = Math.floor(Math.random() * allMemes.length) + 1;
-    const randomMemeObj = allMemes[randomIndex];
-
-    let memeUrl = randomMemeObj.url;
-    let memeAlt = randomMemeObj.name;
-
-    setMeme((prev) => ({
-      ...prev,
-      randomImg: memeUrl,
-      alt: memeAlt,
-    }));
+  const handleTopText = (e) => {
+    setTopText(e.target.value);
   };
 
-  const handleChange = function (event) {
-    const { name, value } = event.target;
-    setMeme((prev) => ({ ...prev, [name]: value }));
+  const handleBottomText = (e) => {
+    setBottomText(e.target.value);
   };
 
-  // Save Image
-  //access the HTML element that contains the meme image by using the useRef hook which is a way to store a reference to a value that persists across renders
-  const memeRef = useRef(null);
+  const handleMeme = (e) => {
+    setMeme(e.target.value);
+  };
+  
+  const handleNewMeme = () => {
+    const randomMeme = memes[Math.floor(Math.random() * memes.length)];
+    setMeme(randomMeme.url);
+  };
 
-  const saveMeme = () => {
-    // get the meme container element
-    const memeElement = memeRef.current;
+  const handleUpload = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
 
-    // calling htmlToImage.toBlob method on the meme element returns a promise that resolves with a blob object containing the image data in PNG format.
+    reader.onloadend = () => {
+      setMeme(reader.result);
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  const handleSave = () => {
+    console.log("Saving meme...");
     htmlToImage
-      .toBlob(memeElement) //  blob = binary large object used to store files in memory or transfer them over the network
+      .toBlob(memeRef.current)
       .then(function (blob) {
-        // download the blob to a file
         saveAs(blob, "meme.png");
       })
       .catch(function (error) {
-        // handle errors during conversion or download
-        alert("oops, something went wrong!", error);
+        console.error("oops, something went wrong!", error);
       });
   };
 
-  //Change text position
-  const topTextRef = useRef(null);
-  const bottomTextRef = useRef(null);
+    return (
+      <main>
+        <div className="container">
+          <div className="meme">
 
-  return (
-    <main>
-      <h3>Get new meme. Type in and position the text. Save and enjoy!</h3>
+            <div className="meme-image">
+              <Draggable>
+                <div className="meme-text meme-text--top">{topText}</div>
+              </Draggable>
 
-      <form>
-        <input
-          type="text"
-          className="form--input"
-          placeholder="top text"
-          name="topText"
-          value={meme.topText}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          className="form--input"
-          placeholder="bottom text"
-          name="bottomText"
-          value={meme.bottomText}
-          onChange={handleChange}
-        />
-        <button className="form--btn" type="button" onClick={getMemeImage}>
-          Get new meme
-          <img src={trollface} alt="trollface" className="btn--logo" />
-        </button>
-      </form>
+              <img
+                src={meme ? meme : defaultImg}
+                alt="Meme"
+                ref={memeRef}
+              />
 
-      <div className="meme-container" ref={memeRef}>
-        <img src={meme.randomImg} alt={meme.alt} className="memeImg" />
+              <Draggable>
+                <div className="meme-text meme-text--bottom">
+                  {bottomText}
+                </div>
+              </Draggable>
+            </div>
 
-        <Draggable bounds="parent">
-          <p className="meme--text top" ref={topTextRef}>
-            {meme.topText}
-          </p>
-        </Draggable>
+            <div className="meme-form">
+              <div className="meme-form-group">
+                <label htmlFor="topText">Top Text</label>
+                <input
+                  type="text"
+                  id="topText"
+                  placeholder="Top Text"
+                  value={topText}
+                  onChange={handleTopText}
+                />
+              </div>
 
-        <Draggable bounds="parent">
-          <p className="meme--text bottom" ref={bottomTextRef}>
-            {meme.bottomText}
-          </p>
-        </Draggable>
-      </div>
+              <div className="meme-form-group">
+                <label htmlFor="bottomText">Bottom Text</label>
+                <input
+                  type="text"
+                  id="bottomText"
+                  placeholder="Bottom Text"
+                  value={bottomText}
+                  onChange={handleBottomText}
+                />
+              </div>
 
-      <div className="download" onClick={saveMeme}>
-        <img src={downloadIcon} alt="download-icon" />
-      </div>
-    </main>
-  );
-};
+              <div className="meme-form-group">
+                <label htmlFor="meme">Meme Template</label>
+                <select
+                  id="meme"
+                  value={meme}
+                  onChange={handleMeme}
+                >
+                  <option value="">Select a meme template</option>
+                  {memes.map((meme) => (
+                    <option key={meme.id} value={meme.url}>
+                      {meme.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="meme-form-group">
+                <label htmlFor="upload">Upload Image</label>
+                <input
+                  type="file"
+                  id="upload"
+                  accept="image/*"
+                  onChange={handleUpload}
+                />
+              </div>
+
+              <div className="meme-form-group">
+                <button
+                  className="meme-button meme-button--success"
+                  onClick={handleNewMeme}
+                >
+                  New Meme
+                </button>
+                <button
+                  className="meme-button meme-button--success"
+                  onClick={handleSave}
+                >
+                  <img
+                    src={downloadIcon}
+                    alt="Download Icon"
+                    className="meme-button-icon"
+                  />
+                  Save Meme
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    )
+}
 
 export default Meme;
