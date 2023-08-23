@@ -11,7 +11,11 @@ const Header = () => {
           className="logo"
           style={{ filter: "brightness(0.3) invert(1)" }}
         />
-        <h2>The meme generator</h2>
+        <div className="meme-header-group">
+          <h2 className="title">Memeify</h2>
+          <p className="title-description">The ultimate meme maker app.</p>
+        </div>
+        
       </nav>
     </header>
   );

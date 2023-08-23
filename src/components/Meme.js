@@ -41,15 +41,40 @@ const Meme = () => {
     setMeme(randomMeme.url);
   };
 
+  // const handleUpload = (e) => {
+  //   const file = e.target.files[0];
+  //   const reader = new FileReader();
+
+  //   reader.onloadend = () => {
+  //     setMeme(reader.result);
+  //   };
+
+  //   reader.readAsDataURL(file);
+  // };
+
   const handleUpload = (e) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setMeme(reader.result);
-    };
-
-    reader.readAsDataURL(file);
+  
+    // Check if the file is an image
+    if (file && file.type.match("image.*")) {
+      // Check if the file is not too large (less than 5 MB)
+      if (file.size < 10000000) {
+        // Create a URL from the file object
+        const userImageUrl = URL.createObjectURL(file);
+  
+        // Set the meme state to the URL
+        setMeme(userImageUrl);
+  
+        // Release the memory after the image is loaded
+        URL.revokeObjectURL(file);
+      } else {
+        // Display an error message if the file is too large
+        alert("The file is too large. Please choose a smaller image, less than 10MB");
+      }
+    } else {
+      // Display an error message if the file is not an image
+      alert("The file is not an image. Please choose an image file.");
+    }
   };
 
   const handleSave = () => {
@@ -66,26 +91,12 @@ const Meme = () => {
 
     return (
       <main>
-        <div className="container">
+        <div className="meme-container">
           <div className="meme">
+            <h3 className="meme-title">Unleash your inner Meme Lord</h3>
 
-            <div className="meme-image">
-              <Draggable>
-                <div className="meme-text meme-text--top">{topText}</div>
-              </Draggable>
-
-              <img
-                src={meme ? meme : defaultImg}
-                alt="Meme"
-                ref={memeRef}
-              />
-
-              <Draggable>
-                <div className="meme-text meme-text--bottom">
-                  {bottomText}
-                </div>
-              </Draggable>
-            </div>
+            <p className="meme-howto">&#9755; Get a new meme, choose one from the template list, or upload your own. <br></br>
+            &#9755; Add some sparkling fun captions and move them around. <br></br>&#9755; Save or share your masterpiece and try not to break the internet!😂</p>
 
             <div className="meme-form">
               <div className="meme-form-group">
@@ -155,6 +166,25 @@ const Meme = () => {
                   Save Meme
                 </button>
               </div>
+
+              <div className="meme-image--container" ref={memeRef}>
+              <Draggable bounds="parent">
+                <div className="meme-text meme-text--top">{topText}</div>
+              </Draggable>
+
+              <img
+                src={meme ? meme : defaultImg}
+                alt="Meme"
+                className="meme-image"
+                
+              />
+
+              <Draggable bounds="parent">
+                <div className="meme-text meme-text--bottom">
+                  {bottomText}
+                </div>
+              </Draggable>
+            </div>
             </div>
           </div>
         </div>
