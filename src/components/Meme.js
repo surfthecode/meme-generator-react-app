@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import Draggable from "react-draggable";
-import { Resizable } from 'react-resizable';
-import { SketchPicker } from 'react-color';
 
 import * as htmlToImage from "html-to-image";
 import { saveAs } from "file-saver";
