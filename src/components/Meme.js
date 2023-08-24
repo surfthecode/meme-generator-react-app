@@ -15,6 +15,7 @@ const Meme = () => {
   const [meme, setMeme] = useState("");
   const [topText, setTopText] = useState("");
   const [bottomText, setBottomText] = useState("");
+  const [showInstructions, setShowInstructions] = useState(false);
 
   const memeRef = useRef();
 
@@ -40,17 +41,6 @@ const Meme = () => {
     const randomMeme = memes[Math.floor(Math.random() * memes.length)];
     setMeme(randomMeme.url);
   };
-
-  // const handleUpload = (e) => {
-  //   const file = e.target.files[0];
-  //   const reader = new FileReader();
-
-  //   reader.onloadend = () => {
-  //     setMeme(reader.result);
-  //   };
-
-  //   reader.readAsDataURL(file);
-  // };
 
   const handleUpload = (e) => {
     const file = e.target.files[0];
@@ -95,11 +85,52 @@ const Meme = () => {
           <div className="meme">
             <h3 className="meme-title">Unleash your inner Meme Lord</h3>
 
-            <p className="meme-howto">&#9755; Get a new meme, choose one from the template list, or upload your own. <br></br>
-            &#9755; Add some sparkling fun captions and move them around. <br></br>&#9755; Save or share your masterpiece and try not to break the internet!😂</p>
-
             <div className="meme-form">
-              <div className="meme-form-group">
+              <div className="meme-image--container" ref={memeRef}>
+                <Draggable bounds="parent">
+                <div className="meme-text meme-text--top">{topText}</div>
+                </Draggable>
+                <img
+                src={meme ? meme : defaultImg}
+                alt="Meme"
+                className="meme-image"/>
+                <Draggable bounds="parent">
+                  <div className="meme-text meme-text--bottom">
+                  {bottomText}
+                  </div>
+                </Draggable>
+              </div>
+
+              <p className="meme-howto" onClick={() => setShowInstructions(!showInstructions)}>
+            - meme how to -
+            </p>
+
+            {showInstructions && (
+              <div className="meme-howto-modal">
+                <div className="meme-howto-modal-content">
+
+                <span
+                  className="meme-howto-modal-close"
+                  onClick={() => setShowInstructions(false)}
+                >
+                  &times;
+                </span>
+
+                <ul className="meme-howto-modal-list">
+                  <li> &#9755; Get a new meme, choose one from the template list, or upload your own.
+                  </li>
+
+                  <li>&#9755; Add some sparkling fun captions and move them around.
+                  </li>
+                  <li> &#9755; Save or share your masterpiece and try not to break the internet!😂
+                  </li>
+                </ul>
+              </div>
+            </div>
+)}
+
+<div className="meme-form-group--container">
+<div className="meme-form-group">
                 <label htmlFor="topText">Top Text</label>
                 <input
                   type="text"
@@ -166,26 +197,11 @@ const Meme = () => {
                   Save Meme
                 </button>
               </div>
-
-              <div className="meme-image--container" ref={memeRef}>
-              <Draggable bounds="parent">
-                <div className="meme-text meme-text--top">{topText}</div>
-              </Draggable>
-
-              <img
-                src={meme ? meme : defaultImg}
-                alt="Meme"
-                className="meme-image"
-                
-              />
-
-              <Draggable bounds="parent">
-                <div className="meme-text meme-text--bottom">
-                  {bottomText}
-                </div>
-              </Draggable>
             </div>
-            </div>
+</div>
+
+              
+            
           </div>
         </div>
       </main>

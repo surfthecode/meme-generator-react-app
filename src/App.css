@@ -1,9 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;300;400;500;700&display=swap");
 
 :root {
-  --primary-color: rgb(233, 236, 239);
+  --primary-color: rgb(239, 239, 239);
   --secondary-color: rgb(33, 37, 41);
   --background-color: rgb(233, 236, 239);
+  --box-shadow-color: rgba(0, 0, 0, 0.35);
 }
 
 html {
@@ -75,16 +76,27 @@ main {
 }
 
 .meme-title {
-  font-size: 2.4rem;
-  line-height: 3rem;
+  font-size: 2.2rem;
+  line-height: 2.6rem;
   font-weight: 700;
   margin-top: 0;
   margin-bottom: 0;
-  color: var(--secndary-color);
+  color: var(--primary-color);
   text-align: center;
+  text-transform: uppercase;
 }
 
 .meme-howto {
+  font-size: 1.6rem;
+  line-height: 1.7rem;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.meme-howto-modal-content {
   font-size: 1.6rem;
   line-height: 2rem;
   font-weight: 400;
@@ -92,9 +104,56 @@ main {
   margin-bottom: 0;
   background-color: var(--background-color);
   text-align: center;
-  padding: 1rem; 
+  padding: 2rem 2.25rem; 
+  width: 34rem;
   border-radius: 0.5rem;
   text-align: left;
+  box-shadow: var(--box-shadow-color) 0rem 0.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.meme-howto-modal-list {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+  padding-left: 0rem;
+}
+
+.meme-howto-modal-close {
+  font-size: 3rem;
+  line-height: 1.3rem;
+position: absolute;
+top: 0.75rem;
+right: 0.75rem;
+
+}
+
+.meme-howto-modal-close:hover,
+.meme-howto-modal-close:focus {
+  color: rgba(252, 70, 107, 1);
+  cursor: pointer;
+}
+
+.meme-howto-modal-content {
+  animation-name: fade-in;
+  animation-duration: 0.5s;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .meme {
@@ -106,6 +165,17 @@ main {
   gap: 2rem;
 }
 
+.meme-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 50rem;
+}
+
 .meme-image--container{
   width: 100%;
   max-height: 50rem;
@@ -113,6 +183,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: var(--box-shadow-color) 0rem 0.5rem 1.5rem;
 }
 
 .meme-image {
@@ -124,6 +195,7 @@ main {
 .meme-text {
   position: absolute;
   font-size: 4rem;
+  font-weight: 700;
   color: #fff;
   -webkit-text-stroke: 0.1rem #212529;
   text-align: center;
@@ -143,13 +215,3 @@ main {
   left: 0;
 }
 
-.meme-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1rem;
-  width: 100%;
-  max-width: 50rem;
-
-}
