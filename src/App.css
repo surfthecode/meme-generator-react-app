@@ -90,10 +90,9 @@ main {
   font-size: 1.6rem;
   line-height: 1.7rem;
   font-weight: 500;
-  margin-top: 0;
-  margin-bottom: 0;
   color: var(--primary-color);
   cursor: pointer;
+  align-self: flex-start;
 }
 
 .meme-howto-modal-content {
@@ -196,7 +195,7 @@ right: 0.75rem;
   position: absolute;
   font-size: 4rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--primary-color);
   -webkit-text-stroke: 0.1rem #212529;
   text-align: center;
   text-transform: uppercase;
@@ -215,3 +214,10 @@ right: 0.75rem;
   left: 0;
 }
 
+.text-size--slider::-webkit-slider-thumb {
+  background-color: red;
+}
+
+.text-size--slider::-moz-range-thumb {
+  background-color: red;
+}
