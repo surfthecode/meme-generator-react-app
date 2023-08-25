@@ -125,17 +125,18 @@ main {
 
 .meme-howto-modal-close {
   font-size: 3rem;
-  line-height: 1.3rem;
-position: absolute;
-top: 0.75rem;
-right: 0.75rem;
-
+  line-height: 1.2rem;
+  position: absolute;
+  top: 0.8rem;
+  right: 1rem;
+  transition: ease-in-out 0.2s;
 }
 
 .meme-howto-modal-close:hover,
 .meme-howto-modal-close:focus {
   color: rgba(252, 70, 107, 1);
   cursor: pointer;
+  transform: scale(1.2);
 }
 
 .meme-howto-modal-content {
@@ -214,10 +215,3 @@ right: 0.75rem;
   left: 0;
 }
 
-.text-size--slider::-webkit-slider-thumb {
-  background-color: red;
-}
-
-.text-size--slider::-moz-range-thumb {
-  background-color: red;
-}
