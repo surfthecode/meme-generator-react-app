@@ -112,86 +112,7 @@ const Meme = () => {
       });
   };
 
-
   // Social media sharing
-  // const handleFacebookShare = () => {
-  //   window.open(
-  //     `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-  //       meme
-  //     )}`,
-  //     "_blank"
-  //   );
-  // };
-
-  const handleFacebookShare = () => {
-    htmlToImage.toBlob(memeRef.current).then(function (blob) {
-      const formData = new FormData();
-      formData.append("file", blob, "meme.png");
-      formData.append("caption", "Check out this meme I created!");
-      window.open(
-        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-          URL.createObjectURL(blob)
-        )}&caption=${encodeURIComponent("Check out this meme I created!")}`,
-        "_blank"
-      );
-    });
-  };
-
-  const handleTwitterShare = () => {
-    htmlToImage.toBlob(memeRef.current).then(function (blob) {
-      const formData = new FormData();
-      formData.append("file", blob, "meme.png");
-      formData.append("caption", "Check out this meme I created!");
-      window.open(
-        `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-          URL.createObjectURL(blob)
-        )}&hashtags=memelord`,
-        "_blank"
-      );
-    });
-  };
-
-  const handleRedditShare = () => {
-    htmlToImage.toBlob(memeRef.current).then(function (blob) {
-      const formData = new FormData();
-      formData.append("file", blob, "meme.png");
-      formData.append("caption", "Check out this meme I created!");
-      window.open(
-        `https://www.reddit.com/submit?url=${encodeURIComponent(
-          URL.createObjectURL(blob)
-        )}&hashtags=memelord`,
-        "_blank"
-      );
-    });
-  };
-
-  const handlePinterestShare = () => {
-    htmlToImage.toBlob(memeRef.current).then(function (blob) {
-      const formData = new FormData();
-      formData.append("file", blob, "meme.png");
-      formData.append("caption", "Check out this meme I created!");
-      window.open(
-        `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(
-          URL.createObjectURL(blob)
-        )}&hashtags=memelord`,
-        "_blank"
-      );
-    });
-  };
-
-  const handleWhatsappShare = () => {
-    htmlToImage.toBlob(memeRef.current).then(function (blob) {
-      const formData = new FormData();
-      formData.append("file", blob, "meme.png");
-      formData.append("caption", "Check out this meme I created!");
-      window.open(
-        `https://wa.me/?text=${encodeURIComponent(
-          URL.createObjectURL(blob)
-        )}&hashtags=memelord`,
-        "_blank"
-      );
-    });
-  };
 
  return (
       <main>
@@ -384,47 +305,7 @@ const Meme = () => {
           </div>
 
           {/* SOCIAL share buttons */}
-          <div className="meme-share">
-            <h3 className="meme-share-title">Share your meme</h3>
 
-            <div className="meme-share-buttons">
-              <button
-                className="meme-button meme-button--facebook"
-                onClick={handleFacebookShare}
-              >
-                Facebook
-              </button>
-            
-              <button
-                className="meme-button meme-button--twitter"
-                onClick={handleTwitterShare}
-              >
-                Twitter
-              </button>
-
-              <button
-                className="meme-button meme-button--reddit"
-                onClick={handleRedditShare}
-              >
-                Reddit
-              </button>
-
-              <button
-                className="meme-button meme-button--pinterest"
-                onClick={handlePinterestShare}
-              >
-                Pinterest
-              </button>
-
-              <button
-                className="meme-button meme-button--whatsapp"
-                onClick={handleWhatsappShare}
-              >
-                Whatsapp
-              </button>
-                      
-            </div>
-          </div>
         </div>
       </div>
     </main>
