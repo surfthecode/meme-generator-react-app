@@ -13,9 +13,8 @@ const Header = () => {
         />
         <div className="meme-header-group">
           <h2 className="title">Memeify</h2>
-          <p className="title-description">The fun meme maker app.</p>
+          <p className="title-description">A quick and easy meme maker</p>
         </div>
-        
       </nav>
     </header>
   );

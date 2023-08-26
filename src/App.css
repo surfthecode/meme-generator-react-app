@@ -99,12 +99,19 @@ main {
 .meme-howto {
   font-size: 1.6rem;
   line-height: 1.7rem;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--primary-color);
   cursor: pointer;
   align-self: flex-start;
   margin-top: 0;
   margin-bottom: 0;
+  text-transform: uppercase;
+  transition: color ease-in-out 0.2s;
+}
+
+.meme-howto:hover,
+.meme-howto:focus {
+  color: var(--secondary-color);
 }
 
 .meme-howto-modal-content {
@@ -145,11 +152,10 @@ main {
 }
 
 .meme-howto-modal-close:hover,
-.meme-howto-modal-close:focus,
-.meme-howto-modal-close:active {
+.meme-howto-modal-close:focus {
   color: var(--quarternary-color);
   cursor: pointer;
-  transform: scale(1.2);
+  transform: scale(1.6);
 }
 
 .meme-howto-modal-content {
@@ -195,8 +201,7 @@ label {
   box-shadow: var(--box-shadow-color) 0rem 0.5rem 1.5rem;
 }
 .get-meme--btn:hover,
-.get-meme--btn:focus,
-.get-meme--btn:active {
+.get-meme--btn:focus {
   background-color: var(--secondary-color);
   color: var(--primary-color);
 }
@@ -328,10 +333,8 @@ label {
 }
 
 .top-text--size:hover,
-.top-text--size:active,
 .top-text--size:focus,
 .bottom-text--size:hover,
-.bottom-text--size:active,
 .bottom-text--size:focus {
   opacity: 1;
 }
@@ -460,8 +463,7 @@ label {
 }
 
 .save-meme--btn:hover,
-.save-meme--btn:focus,
-.save-meme--btn:active {
+.save-meme--btn:focus {
   background-color: var(--secondary-color);
   color: var(--primary-color);
 }
@@ -476,4 +478,6 @@ footer {
 footer h4 {
   font-size: 1.3rem;
   text-align: center;
+  color: var(--primary-color);
+  font-weight: 500;
 }
