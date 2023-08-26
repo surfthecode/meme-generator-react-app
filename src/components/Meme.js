@@ -21,48 +21,59 @@ const Meme = () => {
   const [bottomTextSize, setBottomTextSize] = useState(40);
   const [showInstructions, setShowInstructions] = useState(false);
 
+  // Create a reference to the meme container element
   const memeRef = useRef();
 
+  // Fetch memes from the API
   useEffect(() => {
     fetch(source)
       .then((response) => response.json())
       .then((data) => setMemes(data.data.memes));
   }, []);
 
+  // Update the top text when the top text input changes
   const handleTopText = (e) => {
     setTopText(e.target.value);
   };
 
+  // Update the bottom text when the bottom text input changes
   const handleTopTextSize = (e) => {
     setTopTextSize(e.target.value);
   };
 
+  // Update the top text when the top text input changes
   const handleTopTextColor = (e) => {
     setTopTextColor(e.target.value);
   };
   
+  // Update the bottom text when the bottom text input changes
   const handleBottomText = (e) => {
     setBottomText(e.target.value);
   };
 
+  // Update the bottom text when the bottom text input changes
   const handleBottomTextSize = (e) => {
     setBottomTextSize(e.target.value);
   };
 
+  //  Update the bottom text when the bottom text input changes
   const handleBottomTextColor = (e) => {
     setBottomTextColor(e.target.value);
   };
   
+  // Update the meme when the meme select changes
     const handleMeme = (e) => {
     setMeme(e.target.value);
     console.log(e);
   };
   
+  // Get a new meme
   const handleNewMeme = () => {
     const randomMeme = memes[Math.floor(Math.random() * memes.length)];
     setMeme(randomMeme.url);
   };
 
+  // Upload your own meme
   const handleUpload = (e) => {
     const file = e.target.files[0];
   
@@ -88,6 +99,7 @@ const Meme = () => {
     }
   };
 
+  // Save the meme
   const handleSave = () => {
     console.log("Saving meme...");
     htmlToImage
@@ -102,8 +114,84 @@ const Meme = () => {
 
 
   // Social media sharing
+  // const handleFacebookShare = () => {
+  //   window.open(
+  //     `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+  //       meme
+  //     )}`,
+  //     "_blank"
+  //   );
+  // };
 
-  
+  const handleFacebookShare = () => {
+    htmlToImage.toBlob(memeRef.current).then(function (blob) {
+      const formData = new FormData();
+      formData.append("file", blob, "meme.png");
+      formData.append("caption", "Check out this meme I created!");
+      window.open(
+        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+          URL.createObjectURL(blob)
+        )}&caption=${encodeURIComponent("Check out this meme I created!")}`,
+        "_blank"
+      );
+    });
+  };
+
+  const handleTwitterShare = () => {
+    htmlToImage.toBlob(memeRef.current).then(function (blob) {
+      const formData = new FormData();
+      formData.append("file", blob, "meme.png");
+      formData.append("caption", "Check out this meme I created!");
+      window.open(
+        `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+          URL.createObjectURL(blob)
+        )}&hashtags=memelord`,
+        "_blank"
+      );
+    });
+  };
+
+  const handleRedditShare = () => {
+    htmlToImage.toBlob(memeRef.current).then(function (blob) {
+      const formData = new FormData();
+      formData.append("file", blob, "meme.png");
+      formData.append("caption", "Check out this meme I created!");
+      window.open(
+        `https://www.reddit.com/submit?url=${encodeURIComponent(
+          URL.createObjectURL(blob)
+        )}&hashtags=memelord`,
+        "_blank"
+      );
+    });
+  };
+
+  const handlePinterestShare = () => {
+    htmlToImage.toBlob(memeRef.current).then(function (blob) {
+      const formData = new FormData();
+      formData.append("file", blob, "meme.png");
+      formData.append("caption", "Check out this meme I created!");
+      window.open(
+        `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(
+          URL.createObjectURL(blob)
+        )}&hashtags=memelord`,
+        "_blank"
+      );
+    });
+  };
+
+  const handleWhatsappShare = () => {
+    htmlToImage.toBlob(memeRef.current).then(function (blob) {
+      const formData = new FormData();
+      formData.append("file", blob, "meme.png");
+      formData.append("caption", "Check out this meme I created!");
+      window.open(
+        `https://wa.me/?text=${encodeURIComponent(
+          URL.createObjectURL(blob)
+        )}&hashtags=memelord`,
+        "_blank"
+      );
+    });
+  };
 
  return (
       <main>
@@ -296,12 +384,51 @@ const Meme = () => {
           </div>
 
           {/* SOCIAL share buttons */}
+          <div className="meme-share">
+            <h3 className="meme-share-title">Share your meme</h3>
 
+            <div className="meme-share-buttons">
+              <button
+                className="meme-button meme-button--facebook"
+                onClick={handleFacebookShare}
+              >
+                Facebook
+              </button>
+            
+              <button
+                className="meme-button meme-button--twitter"
+                onClick={handleTwitterShare}
+              >
+                Twitter
+              </button>
 
+              <button
+                className="meme-button meme-button--reddit"
+                onClick={handleRedditShare}
+              >
+                Reddit
+              </button>
+
+              <button
+                className="meme-button meme-button--pinterest"
+                onClick={handlePinterestShare}
+              >
+                Pinterest
+              </button>
+
+              <button
+                className="meme-button meme-button--whatsapp"
+                onClick={handleWhatsappShare}
+              >
+                Whatsapp
+              </button>
+                      
+            </div>
+          </div>
         </div>
-        </div>
-      </main>
-    )
+      </div>
+    </main>
+  )
 }
 
 export default Meme;
