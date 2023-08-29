@@ -4,7 +4,6 @@ import Draggable from "react-draggable";
 import * as htmlToImage from "html-to-image";
 import { saveAs } from "file-saver";
 
-import trollface from "../assets/images/trollface.png";
 import textSize from "../assets/icons/text-size.png";
 import textColor from "../assets/icons/text-color.png";
 import defaultImg from "../assets/images/default-img.jpg";
@@ -127,43 +126,48 @@ const Meme = () => {
           </h3>
 
           <div className="meme-form">
-            {/* Meme image & text container*/}
-            <div className="meme-image--container" ref={memeRef}>
-              <Draggable bounds="parent">
-                <div
-                  className="meme-text meme-text--top"
-                  style={{ color: topTextColor, fontSize: `${topTextSize}px` }}
-                >
-                  {topText}
-                </div>
-              </Draggable>
+            <div className="meme-form-wrapper">
+              {/* Meme image & text container*/}
+              <div className="meme-image--container" ref={memeRef}>
+                <Draggable bounds="parent">
+                  <div
+                    className="meme-text meme-text--top"
+                    style={{
+                      color: topTextColor,
+                      fontSize: `${topTextSize}px`,
+                    }}
+                  >
+                    {topText}
+                  </div>
+                </Draggable>
 
-              <img
-                src={meme ? meme : defaultImg}
-                alt="Meme"
-                className="meme-image"
-              />
+                <img
+                  src={meme ? meme : defaultImg}
+                  alt="Meme"
+                  className="meme-image"
+                />
 
-              <Draggable bounds="parent">
-                <div
-                  className="meme-text meme-text--bottom"
-                  style={{
-                    color: bottomTextColor,
-                    fontSize: `${bottomTextSize}px`,
-                  }}
-                >
-                  {bottomText}
-                </div>
-              </Draggable>
+                <Draggable bounds="parent">
+                  <div
+                    className="meme-text meme-text--bottom"
+                    style={{
+                      color: bottomTextColor,
+                      fontSize: `${bottomTextSize}px`,
+                    }}
+                  >
+                    {bottomText}
+                  </div>
+                </Draggable>
+              </div>
+
+              {/* HOW TO instructions */}
+              <p
+                className="meme-howto"
+                onClick={() => setShowInstructions(!showInstructions)}
+              >
+                &#10149; meme how to
+              </p>
             </div>
-
-            {/* HOW TO instructions */}
-            <p
-              className="meme-howto"
-              onClick={() => setShowInstructions(!showInstructions)}
-            >
-              &#10149; meme how to
-            </p>
 
             {/* TOGGLE list */}
             {showInstructions && (
