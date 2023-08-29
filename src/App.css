@@ -30,6 +30,7 @@ body {
   );
   font-family: "Barlow", sans-serif;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .meme-header-group {
@@ -49,6 +50,7 @@ nav {
 }
 
 .title {
+  width: 100%;
   font-size: 3rem;
   line-height: 3.4rem;
   font-weight: 700;
@@ -81,6 +83,7 @@ main {
 }
 
 .meme-title {
+  width: 100%;
   font-size: 2.2rem;
   line-height: 2.6rem;
   font-weight: 700;
@@ -89,6 +92,17 @@ main {
   color: var(--primary-color);
   text-align: center;
   text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.meme-lord {
+  font-size: 2.6rem;
+  line-height: 3rem;
+  color: var(--secondary-color);
+  text-align: center;
 }
 
 .meme-howto {
@@ -182,7 +196,7 @@ label {
 
 .get-meme--btn {
   width: 100%;
-  height: 4rem;
+  height: 4.2rem;
   border: 0.1rem solid var(--secondary-color);
   border-radius: 0.5rem;
   background-color: var(--quarternary-color);
@@ -238,6 +252,9 @@ label {
   justify-content: center;
   align-items: center;
   box-shadow: var(--box-shadow-color) 0rem 0.5rem 1.5rem;
+  border: 0.1rem solid var(--secondary-color);
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 .meme-image {
@@ -383,7 +400,16 @@ label {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  opacity: 0.6;
 }
+
+.top-text--color:hover,
+.top-text--color:focus,
+.bottom-text--color:hover,
+.bottom-text--color:focus {
+  opacity: 1;
+}
+
 .top-text--color::-webkit-color-swatch,
 .bottom-text--color::-webkit-color-swatch {
   border-radius: 0.5rem;
@@ -491,12 +517,56 @@ footer h4 {
 
 @media (min-width: 769px) {
   #root {
-    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  main {
+    padding-top: 1rem;
+  }
+
+  .title {
+    font-size: 3.4rem;
+    line-height: 3.9rem;
+  }
+
+  .title-description {
+    font-size: 2rem;
+    line-height: 2.3rem;
+  }
+
+  .logo {
+    max-width: 7rem;
   }
 
   .meme-container,
   .meme {
     width: 100%;
+    max-width: 110rem;
+  }
+
+  .meme-title {
+    width: 100%;
+    font-size: 3rem;
+    line-height: 4rem;
+    position: fixed;
+    top: 15rem;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0;
+    color: var(--secondary-color);
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .meme-lord {
+    display: inline-block;
+    color: var(--primary-color);
+    font-size: 4rem;
   }
 
   .meme-form {
@@ -505,21 +575,90 @@ footer h4 {
     align-items: center;
     gap: 2rem;
     width: 100%;
-    max-width: 100rem;
+    max-width: 110rem;
+    height: 100%;
+    max-height: 70rem;
   }
 
   .meme-form-wrapper {
-    flex-grow: 2;
+    flex-grow: 1.8;
     flex-basis: 45rem;
+    width: 100%;
+    max-width: 70rem;
+    height: 100%;
+    max-height: 70rem;
+    position: relative;
   }
 
   .meme-image--container {
     max-width: 70rem;
+    max-height: 70rem;
+  }
+
+  .meme-image--container img {
+    max-height: 70rem;
+  }
+
+  .meme-howto {
+    position: absolute;
+    bottom: -4rem;
+    left: 0;
+    font-size: 1.8rem;
+  }
+  .meme-howto-modal {
+    position: absolute;
+    left: 0;
+    bottom: -17rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .meme-howto-modal-content {
+    width: 100%;
+    max-width: 60rem;
+    font-size: 1.7rem;
+    line-height: 2.3rem;
+  }
+
+  .meme-howto-modal-close:focus,
+  .meme-howto-modal-close:hover {
+    transform: scale(2.2);
   }
 
   .meme-form-group--container {
-    max-width: 45rem;
     flex-grow: 1;
-    flex-basis: 30rem;
+    flex-basis: 45rem;
+    gap: 1.5rem;
+  }
+
+  .top-text--input,
+  .bottom-text--input {
+    height: 7rem;
+  }
+
+  .get-meme--btn,
+  .save-meme--btn {
+    font-size: 2.7rem;
+    height: 7rem;
+    background-color: var(--secondary-color);
+  }
+
+  .get-meme--btn:hover,
+  .get-meme--btn:focus,
+  .save-meme--btn:hover,
+  .save-meme--btn:focus {
+    background-color: var(--quarternary-color);
+    color: var(--primary-color);
+  }
+
+  .templates-container {
+    height: 5rem;
+  }
+
+  #meme {
+    height: 3.5rem;
   }
 }
