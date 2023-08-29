@@ -573,7 +573,7 @@ footer h4 {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 4rem;
     width: 100%;
     max-width: 110rem;
     height: 100%;
