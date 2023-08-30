@@ -246,7 +246,7 @@ const Meme = () => {
                     <div className="meme-form-group--modifiers">
                       <label htmlFor="topTextSize">Size</label>
                       <span className="text-size--icon">
-                        <img src={textSize}></img>
+                        <img src={textSize} alt="top text size"></img>
                       </span>
                       <input
                         className="text-size--slider top-text--size"
@@ -262,7 +262,7 @@ const Meme = () => {
                     <div className="meme-form-group--modifiers">
                       <label htmlFor="topTextColor">Color</label>
                       <span className="text-color--icon">
-                        <img src={textColor}></img>
+                        <img src={textColor} alt="top text color"></img>
                       </span>
                       <input
                         className="text-color-picker top-text--color"
@@ -293,7 +293,7 @@ const Meme = () => {
                     <div className="meme-form-group--modifiers">
                       <label htmlFor="bottomTextSize">Size</label>
                       <span className="text-size--icon">
-                        <img src={textSize}></img>
+                        <img src={textSize} alt="bottom text size"></img>
                       </span>
                       <input
                         className="text-size--slider bottom-text--size"
@@ -309,7 +309,7 @@ const Meme = () => {
                     <div className="meme-form-group--modifiers">
                       <label htmlFor="bottomTextColor">Color</label>
                       <span className="text-color--icon">
-                        <img src={textColor}></img>
+                        <img src={textColor} alt="bottom text color"></img>
                       </span>
                       <input
                         className="text-color-picker bottom-text--color"
