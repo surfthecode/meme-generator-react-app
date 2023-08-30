@@ -18,8 +18,8 @@ const Meme = () => {
   const [meme, setMeme] = useState("");
   const [topText, setTopText] = useState("");
   const [bottomText, setBottomText] = useState("");
-  const [topTextColor, setTopTextColor] = useState("");
-  const [bottomTextColor, setBottomTextColor] = useState("");
+  const [topTextColor, setTopTextColor] = useState("#efefef");
+  const [bottomTextColor, setBottomTextColor] = useState("#efefef");
   const [topTextSize, setTopTextSize] = useState(40);
   const [bottomTextSize, setBottomTextSize] = useState(40);
   const [showInstructions, setShowInstructions] = useState(false);
