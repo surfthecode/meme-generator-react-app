@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/meme-generator-react-app/static/css/main.d2fbccc1.css",
-    "main.js": "/meme-generator-react-app/static/js/main.ff443636.js",
+    "main.js": "/meme-generator-react-app/static/js/main.f821e98a.js",
     "static/js/787.d0e1a4e4.chunk.js": "/meme-generator-react-app/static/js/787.d0e1a4e4.chunk.js",
     "static/media/default-img.jpg": "/meme-generator-react-app/static/media/default-img.f549ac6021a1993180a5.jpg",
     "index.html": "/meme-generator-react-app/index.html",
     "static/media/download.svg": "/meme-generator-react-app/static/media/download.4c1e9dc616c2d76d2137da58e02b051a.svg",
     "main.d2fbccc1.css.map": "/meme-generator-react-app/static/css/main.d2fbccc1.css.map",
-    "main.ff443636.js.map": "/meme-generator-react-app/static/js/main.ff443636.js.map",
+    "main.f821e98a.js.map": "/meme-generator-react-app/static/js/main.f821e98a.js.map",
     "787.d0e1a4e4.chunk.js.map": "/meme-generator-react-app/static/js/787.d0e1a4e4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d2fbccc1.css",
-    "static/js/main.ff443636.js"
+    "static/js/main.f821e98a.js"
   ]
 }
