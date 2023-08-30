@@ -236,7 +236,7 @@ const Meme = () => {
                       className="top-text--input"
                       type="text"
                       id="topText"
-                      placeholder="  TOP TEXT"
+                      placeholder="TOP TEXT"
                       value={topText}
                       onChange={handleTopText}
                     />
@@ -283,7 +283,7 @@ const Meme = () => {
                       className="bottom-text--input"
                       type="text"
                       id="bottomText"
-                      placeholder="  BOTTOM TEXT"
+                      placeholder="BOTTOM TEXT"
                       value={bottomText}
                       onChange={handleBottomText}
                     />
