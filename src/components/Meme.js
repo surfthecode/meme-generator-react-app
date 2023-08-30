@@ -24,96 +24,90 @@ const Meme = () => {
   const [bottomTextSize, setBottomTextSize] = useState(40);
   const [showInstructions, setShowInstructions] = useState(false);
 
-  // MEME Title text transition
+  // app title transition
   useEffect(() => {
     const intervalId = setInterval(
       () => setIndex((index) => index + 1),
-      3000 // every 10 seconds
+      3000 // every 3 seconds
     );
     return () => clearTimeout(intervalId);
   }, []);
 
-  // Create a reference to the meme container element
+  // reference the meme container
   const memeRef = useRef();
 
-  // Fetch memes from the API
+  // fetch memes from the API
   useEffect(() => {
     fetch(source)
       .then((response) => response.json())
       .then((data) => setMemes(data.data.memes));
   }, []);
 
-  // Update the top text when the top text input changes
+  // update the top text
+  // text input
   const handleTopText = (e) => {
     setTopText(e.target.value);
   };
-
-  // Update the bottom text when the bottom text input changes
+  // text size
   const handleTopTextSize = (e) => {
     setTopTextSize(e.target.value);
   };
-
-  // Update the top text when the top text input changes
+  // text color
   const handleTopTextColor = (e) => {
     setTopTextColor(e.target.value);
   };
 
-  // Update the bottom text when the bottom text input changes
+  // update the bottom text
+  // text input
   const handleBottomText = (e) => {
     setBottomText(e.target.value);
   };
-
-  // Update the bottom text when the bottom text input changes
+  // text size
   const handleBottomTextSize = (e) => {
     setBottomTextSize(e.target.value);
   };
-
-  //  Update the bottom text when the bottom text input changes
+  //  text color
   const handleBottomTextColor = (e) => {
     setBottomTextColor(e.target.value);
   };
 
-  // Update the meme when the meme select changes
+  // update the meme on uplod
   const handleMeme = (e) => {
     setMeme(e.target.value);
-    console.log(e);
   };
 
-  // Get a new meme
+  // get a new meme
   const handleNewMeme = () => {
     const randomMeme = memes[Math.floor(Math.random() * memes.length)];
     setMeme(randomMeme.url);
   };
 
-  // Upload your own meme
+  // upload custom meme
   const handleUpload = (e) => {
     const file = e.target.files[0];
-
-    // Check if the file is an image
+    // check if file type == image
     if (file && file.type.match("image.*")) {
-      // Check if the file is not too large (less than 5 MB)
+      // check if file size < 10MB
       if (file.size < 10000000) {
-        // Create a URL from the file object
+        // create a URL from the file object
         const userImageUrl = URL.createObjectURL(file);
-
-        // Set the meme state to the URL
+        // set the meme state to the URL
         setMeme(userImageUrl);
-
-        // Release the memory after the image is loaded
+        // release the memory after the image is loaded
         URL.revokeObjectURL(file);
       } else {
-        // Display an error message if the file is too large
+        // display error message if file > 10 MB
         alert(
           "The file is too large. Please choose a smaller image, less than 10MB"
         );
       }
     } else {
-      // Display an error message if the file is not an image
+      // display error message if file type != image
       alert("The file is not an image. Please choose an image file.");
     }
   };
 
-  // Save the meme
+  // save the meme to device
   const handleSave = () => {
     console.log("Saving meme...");
     htmlToImage
@@ -122,259 +116,262 @@ const Meme = () => {
         saveAs(blob, "meme.png");
       })
       .catch(function (error) {
-        console.error("oops, something went wrong!", error);
+        // console.error("oops, something went wrong!", error);
+        alert("Oops, something went wrong! Please try again.");
       });
   };
 
   // Social media sharing
 
   return (
-    <main>
-      <div className="meme-container">
-        <div className="meme">
-          <h3 className="meme-title">
-            {" "}
-            Unleash your inner{" "}
-            <span className="meme-lord">
-              <TextTransition
-                springConfig={presets.wobbly}
-                direction="down"
-                translateValue="50%"
-              >
-                {TEXTS[index % TEXTS.length]}
-              </TextTransition>
-            </span>
-          </h3>
-
-          <div className="meme-form">
-            <div className="meme-form-wrapper">
-              {/* Meme image & text container*/}
-              <div className="meme-image--container" ref={memeRef}>
-                <Draggable bounds="parent">
-                  <div
-                    className="meme-text meme-text--top"
-                    style={{
-                      color: topTextColor,
-                      fontSize: `${topTextSize}px`,
-                    }}
-                  >
-                    {topText}
-                  </div>
-                </Draggable>
-
-                <img
-                  src={meme ? meme : defaultImg}
-                  alt="Meme"
-                  className="meme-image"
-                />
-
-                <Draggable bounds="parent">
-                  <div
-                    className="meme-text meme-text--bottom"
-                    style={{
-                      color: bottomTextColor,
-                      fontSize: `${bottomTextSize}px`,
-                    }}
-                  >
-                    {bottomText}
-                  </div>
-                </Draggable>
-              </div>
-
-              {/* HOW TO instructions */}
-              <p
-                className="meme-howto"
-                onClick={() => setShowInstructions(!showInstructions)}
-              >
-                &#10149; meme how to
-              </p>
-            </div>
-
-            {/* TOGGLE list */}
-            {showInstructions && (
-              <div className="meme-howto-modal">
-                <div className="meme-howto-modal-content">
-                  <span
-                    className="meme-howto-modal-close"
-                    onClick={() => setShowInstructions(false)}
-                  >
-                    &times;
-                  </span>
-
-                  <ul className="meme-howto-modal-list">
-                    <li>
-                      {" "}
-                      &#10149; Get a new meme, choose one from the template
-                      list, or upload your own.
-                    </li>
-                    <li>
-                      &#10149; Add some sparkling fun captions and move them
-                      around.
-                    </li>
-                    <li>
-                      {" "}
-                      &#10149; Save or share your masterpiece and try not to
-                      break the internet!😂
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            )}
-
-            <div className="meme-form-group--container">
-              {/* GET new meme */}
-              <div className="get-meme">
-                <button
-                  className="meme-button get-meme--btn"
-                  onClick={handleNewMeme}
+    <>
+      <main>
+        <div className="meme-container">
+          <div className="meme">
+            <h3 className="meme-title">
+              {" "}
+              Unleash your inner{" "}
+              <span className="meme-lord">
+                <TextTransition
+                  springConfig={presets.wobbly}
+                  direction="down"
+                  translateValue="50%"
                 >
-                  Get New Meme
-                </button>
-              </div>
+                  {TEXTS[index % TEXTS.length]}
+                </TextTransition>
+              </span>
+            </h3>
 
-              {/* TOP TEXT inputs */}
-              <div className="top-text-container">
-                <div className="meme-form-group top-text">
-                  <label htmlFor="topText">Top Text</label>
-                  <input
-                    className="top-text--input"
-                    type="text"
-                    id="topText"
-                    placeholder="  TOP TEXT"
-                    value={topText}
-                    onChange={handleTopText}
+            <div className="meme-form">
+              <div className="meme-form-wrapper">
+                {/* Meme image & text container*/}
+                <div className="meme-image--container" ref={memeRef}>
+                  <Draggable bounds="parent">
+                    <div
+                      className="meme-text meme-text--top"
+                      style={{
+                        color: topTextColor,
+                        fontSize: `${topTextSize}px`,
+                      }}
+                    >
+                      {topText}
+                    </div>
+                  </Draggable>
+
+                  <img
+                    src={meme ? meme : defaultImg}
+                    alt="Meme"
+                    className="meme-image"
                   />
+
+                  <Draggable bounds="parent">
+                    <div
+                      className="meme-text meme-text--bottom"
+                      style={{
+                        color: bottomTextColor,
+                        fontSize: `${bottomTextSize}px`,
+                      }}
+                    >
+                      {bottomText}
+                    </div>
+                  </Draggable>
                 </div>
 
-                <div className="text-modifiers">
-                  <div className="meme-form-group--modifiers">
-                    <label htmlFor="topTextSize">Size</label>
-                    <span className="text-size--icon">
-                      <img src={textSize}></img>
-                    </span>
-                    <input
-                      className="text-size--slider top-text--size"
-                      type="range"
-                      id="topTextSize"
-                      min="20"
-                      max="80"
-                      value={topTextSize}
-                      onChange={handleTopTextSize}
-                    />
-                  </div>
-
-                  <div className="meme-form-group--modifiers">
-                    <label htmlFor="topTextColor">Color</label>
-                    <span className="text-color--icon">
-                      <img src={textColor}></img>
-                    </span>
-                    <input
-                      className="text-color-picker top-text--color"
-                      type="color"
-                      id="topTextColor"
-                      value={topTextColor}
-                      onChange={handleTopTextColor}
-                    />
-                  </div>
-                </div>
+                {/* HOW TO instructions */}
+                <p
+                  className="meme-howto"
+                  onClick={() => setShowInstructions(!showInstructions)}
+                >
+                  &#10149; meme how to
+                </p>
               </div>
 
-              {/* BOTTOM TEXT inputs */}
-              <div className="bottom-text-container">
-                <div className="meme-form-group bottom-text">
-                  <label htmlFor="bottomText">Bottom Text</label>
-                  <input
-                    className="bottom-text--input"
-                    type="text"
-                    id="bottomText"
-                    placeholder="  BOTTOM TEXT"
-                    value={bottomText}
-                    onChange={handleBottomText}
-                  />
-                </div>
-
-                <div className="text-modifiers">
-                  <div className="meme-form-group--modifiers">
-                    <label htmlFor="bottomTextSize">Size</label>
-                    <span className="text-size--icon">
-                      <img src={textSize}></img>
+              {/* TOGGLE list */}
+              {showInstructions && (
+                <div className="meme-howto-modal">
+                  <div className="meme-howto-modal-content">
+                    <span
+                      className="meme-howto-modal-close"
+                      onClick={() => setShowInstructions(false)}
+                    >
+                      &times;
                     </span>
-                    <input
-                      className="text-size--slider bottom-text--size"
-                      type="range"
-                      id="bottomTextSize"
-                      min="20"
-                      max="80"
-                      value={bottomTextSize}
-                      onChange={handleBottomTextSize}
-                    />
-                  </div>
 
-                  <div className="meme-form-group--modifiers">
-                    <label htmlFor="bottomTextColor">Color</label>
-                    <span className="text-color--icon">
-                      <img src={textColor}></img>
-                    </span>
-                    <input
-                      className="text-color-picker bottom-text--color"
-                      type="color"
-                      id="bottomTextColor"
-                      value={bottomTextColor}
-                      onChange={handleBottomTextColor}
-                    />
+                    <ul className="meme-howto-modal-list">
+                      <li>
+                        {" "}
+                        &#10149; Get a new meme, choose one from the template
+                        list, or upload your own.
+                      </li>
+                      <li>
+                        &#10149; Add some sparkling fun captions and move them
+                        around.
+                      </li>
+                      <li>
+                        {" "}
+                        &#10149; Save or share your masterpiece and try not to
+                        break the internet!😂
+                      </li>
+                    </ul>
                   </div>
                 </div>
-              </div>
+              )}
 
-              {/* MEME templates select */}
-              <div className="meme-form-group templates-container">
-                <label htmlFor="meme">Choose from templates</label>
-                <select id="meme" value={meme} onChange={handleMeme}>
-                  <option value="" style={{ textAlign: "center" }}>
-                    Select a meme template
-                  </option>
-                  {memes.map((meme) => (
-                    <option key={meme.id} value={meme.url}>
-                      {meme.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="meme-buttons-container">
-                {/* UPLOAD own meme */}
-                <div className="meme-form-group upload-meme-container">
-                  <label htmlFor="upload">Upload meme</label>
-                  <input
-                    type="file"
-                    id="upload"
-                    accept="image/*"
-                    onChange={handleUpload}
-                  />
-                </div>
-
-                <div className="meme-form-group save-meme-container">
-                  {/* SAVE meme */}
+              <div className="meme-form-group--container">
+                {/* GET new meme */}
+                <div className="get-meme">
                   <button
-                    className="meme-button save-meme--btn"
-                    onClick={handleSave}
+                    className="meme-button get-meme--btn"
+                    onClick={handleNewMeme}
                   >
-                    <img
-                      src={downloadIcon}
-                      alt="Download Icon"
-                      className="meme-button-icon"
-                    />
-                    Save Meme
+                    Get New Meme
                   </button>
                 </div>
+
+                {/* TOP TEXT inputs */}
+                <div className="top-text-container">
+                  <div className="meme-form-group top-text">
+                    <label htmlFor="topText">Top Text</label>
+                    <input
+                      className="top-text--input"
+                      type="text"
+                      id="topText"
+                      placeholder="  TOP TEXT"
+                      value={topText}
+                      onChange={handleTopText}
+                    />
+                  </div>
+
+                  <div className="text-modifiers">
+                    <div className="meme-form-group--modifiers">
+                      <label htmlFor="topTextSize">Size</label>
+                      <span className="text-size--icon">
+                        <img src={textSize}></img>
+                      </span>
+                      <input
+                        className="text-size--slider top-text--size"
+                        type="range"
+                        id="topTextSize"
+                        min="20"
+                        max="80"
+                        value={topTextSize}
+                        onChange={handleTopTextSize}
+                      />
+                    </div>
+
+                    <div className="meme-form-group--modifiers">
+                      <label htmlFor="topTextColor">Color</label>
+                      <span className="text-color--icon">
+                        <img src={textColor}></img>
+                      </span>
+                      <input
+                        className="text-color-picker top-text--color"
+                        type="color"
+                        id="topTextColor"
+                        value={topTextColor}
+                        onChange={handleTopTextColor}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* BOTTOM TEXT inputs */}
+                <div className="bottom-text-container">
+                  <div className="meme-form-group bottom-text">
+                    <label htmlFor="bottomText">Bottom Text</label>
+                    <input
+                      className="bottom-text--input"
+                      type="text"
+                      id="bottomText"
+                      placeholder="  BOTTOM TEXT"
+                      value={bottomText}
+                      onChange={handleBottomText}
+                    />
+                  </div>
+
+                  <div className="text-modifiers">
+                    <div className="meme-form-group--modifiers">
+                      <label htmlFor="bottomTextSize">Size</label>
+                      <span className="text-size--icon">
+                        <img src={textSize}></img>
+                      </span>
+                      <input
+                        className="text-size--slider bottom-text--size"
+                        type="range"
+                        id="bottomTextSize"
+                        min="20"
+                        max="80"
+                        value={bottomTextSize}
+                        onChange={handleBottomTextSize}
+                      />
+                    </div>
+
+                    <div className="meme-form-group--modifiers">
+                      <label htmlFor="bottomTextColor">Color</label>
+                      <span className="text-color--icon">
+                        <img src={textColor}></img>
+                      </span>
+                      <input
+                        className="text-color-picker bottom-text--color"
+                        type="color"
+                        id="bottomTextColor"
+                        value={bottomTextColor}
+                        onChange={handleBottomTextColor}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* MEME templates select */}
+                <div className="meme-form-group templates-container">
+                  <label htmlFor="meme">Choose from templates</label>
+                  <select id="meme" value={meme} onChange={handleMeme}>
+                    <option value="" style={{ textAlign: "center" }}>
+                      Select a meme template
+                    </option>
+                    {memes.map((meme) => (
+                      <option key={meme.id} value={meme.url}>
+                        {meme.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="meme-buttons-container">
+                  {/* UPLOAD custom meme */}
+                  <div className="meme-form-group upload-meme-container">
+                    <label htmlFor="upload">Upload meme</label>
+                    <input
+                      type="file"
+                      id="upload"
+                      accept="image/*"
+                      onChange={handleUpload}
+                    />
+                  </div>
+
+                  <div className="meme-form-group save-meme-container">
+                    {/* SAVE meme */}
+                    <button
+                      className="meme-button save-meme--btn"
+                      onClick={handleSave}
+                    >
+                      <img
+                        src={downloadIcon}
+                        alt="Download Icon"
+                        className="meme-button-icon"
+                      />
+                      Save Meme
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* SOCIAL share buttons */}
+            {/* SOCIAL share buttons */}
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
 
