@@ -121,10 +121,6 @@ const Meme = () => {
       });
   };
 
-  // Social media sharing
-
-  
-  
   return (
     <>
       <main>
@@ -371,8 +367,6 @@ const Meme = () => {
                 </div>
               </div>
             </div>
-
-            {/* SOCIAL share buttons */}
           </div>
         </div>
       </main>
