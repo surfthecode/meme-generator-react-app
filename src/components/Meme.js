@@ -340,8 +340,11 @@ const Meme = () => {
                 <div className="meme-buttons-container">
                   {/* UPLOAD custom meme */}
                   <div className="meme-form-group upload-meme-container">
-                    <label htmlFor="upload">Upload meme</label>
+                    <label className="upload-meme--label" htmlFor="upload">
+                      Upload meme
+                    </label>
                     <input
+                      className="upload-meme--btn"
                       type="file"
                       id="upload"
                       accept="image/*"
