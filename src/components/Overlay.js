@@ -4,7 +4,6 @@ function Overlay() {
   const [showOverlay, setShowOverlay] = useState(true);
 
   function handleClick() {
-    console.log("clicked");
     setShowOverlay(false);
   }
 
@@ -15,44 +14,42 @@ function Overlay() {
         display: showOverlay ? "block" : "none",
       }}
     >
-      <div
-        className="box"
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          backgroundColor: "#fff",
-          padding: "2rem",
-          borderRadius: "0.5rem",
-          boxShadow: "0 1rem 2rem rgba(0,0,0,0.3)",
-        }}
-      >
-        <div
-          className="overlay-list"
-          style={{
-            fontSize: "2rem",
-            lineHeight: "2",
-            padding: "0.5rem",
-          }}
-        >
-          <ul className="meme-howto-modal-list">
-            <li>
-              {" "}
-              &#10149; Get a new meme, choose one from the template list, or
-              upload your own.
-            </li>
-            <li>
-              &#10149; Add some sparkling fun captions and move them around.
-            </li>
-            <li>
-              {" "}
-              &#10149; Save or share your masterpiece and try not to break the
-              internet!😂
-            </li>
-          </ul>
-        </div>
+      <div className="overlay-content overlay-content--get-meme">
+        <p style={{ padding: "0rem", margin: "0" }}>
+          1. Get a new meme by clicking on the "GET NEW MEME" button.
+        </p>
       </div>
+
+      <div className="overlay-content overlay-content--template">
+        <p style={{ padding: "0rem", margin: "0" }}>
+          2. Then, you can also select a meme from the template list.
+        </p>
+      </div>
+
+      <div className="overlay-content overlay-content--upload">
+        <p style={{ padding: "0rem", margin: "0" }}>
+          3. Or, you can upload your own meme to play around.
+        </p>
+      </div>
+
+      <div className="overlay-content overlay-content--text">
+        <p style={{ padding: "0rem", margin: "0" }}>
+          4. Now you can create a fun top and bottom meme text.
+        </p>
+      </div>
+
+      <div className="overlay-content overlay-content--style">
+        <p style={{ padding: "0rem", margin: "0" }}>
+          5. And you can style the text size and color to your liking.
+        </p>
+      </div>
+
+      <div className="overlay-content overlay-content--save">
+        <p style={{ padding: "0rem", margin: "0" }}>
+          6. Save your masterpice and try not to break the internet 🥳
+        </p>
+      </div>
+
       <div
         style={{
           position: "absolute",
