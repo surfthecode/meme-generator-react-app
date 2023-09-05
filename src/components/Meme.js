@@ -2,18 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import Draggable from "react-draggable";
 import * as htmlToImage from "html-to-image";
 import { saveAs } from "file-saver";
-import TextTransition, { presets } from "react-text-transition";
 
 import textSize from "../assets/icons/text-size.png";
 import textColor from "../assets/icons/text-color.png";
 import defaultImg from "../assets/images/default-img.jpg";
 import downloadIcon from "../assets/icons/download.svg";
 
-const TEXTS = ["MEME LORD", "MEME MASTER", "SUPER SAYAN MEMENESS", "MEME GOD"];
-
 const Meme = () => {
   const source = "https://api.imgflip.com/get_memes";
-  const [index, setIndex] = useState(0);
   const [memes, setMemes] = useState([]);
   const [meme, setMeme] = useState("");
   const [topText, setTopText] = useState("");
@@ -23,15 +19,6 @@ const Meme = () => {
   const [topTextSize, setTopTextSize] = useState(40);
   const [bottomTextSize, setBottomTextSize] = useState(40);
   const [showInstructions, setShowInstructions] = useState(false);
-
-  // app title transition
-  useEffect(() => {
-    const intervalId = setInterval(
-      () => setIndex((index) => index + 1),
-      3000 // every 3 seconds
-    );
-    return () => clearTimeout(intervalId);
-  }, []);
 
   // reference the meme container
   const memeRef = useRef();
@@ -126,20 +113,6 @@ const Meme = () => {
       <main>
         <div className="meme-container">
           <div className="meme">
-            <h3 className="meme-title">
-              {" "}
-              Unleash your inner{" "}
-              <span className="meme-lord">
-                <TextTransition
-                  springConfig={presets.wobbly}
-                  direction="down"
-                  translateValue="50%"
-                >
-                  {TEXTS[index % TEXTS.length]}
-                </TextTransition>
-              </span>
-            </h3>
-
             <div className="meme-form">
               <div className="meme-form-wrapper">
                 {/* Meme image & text container*/}

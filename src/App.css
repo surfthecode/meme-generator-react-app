@@ -88,7 +88,7 @@ main {
   font-size: 2.2rem;
   line-height: 2.6rem;
   font-weight: 700;
-  margin-top: 0;
+  margin-top: 3rem;
   margin-bottom: 1rem;
   color: var(--primary-color);
   text-align: center;
@@ -432,7 +432,8 @@ label {
 }
 
 #meme {
-  height: 70%;
+  min-height: 50%;
+  max-height: 70%;
   border-radius: 0.5rem;
   width: 100%;
   border: 0.1rem solid var(--secondary-color);
@@ -573,15 +574,11 @@ footer h4 {
     width: 100%;
     font-size: 3rem;
     line-height: 4rem;
-    position: fixed;
-    top: 15rem;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 0;
     color: var(--secondary-color);
     display: inline-block;
     white-space: nowrap;
     overflow: hidden;
+    margin-bottom: 0;
   }
 
   .meme-lord {
@@ -624,29 +621,45 @@ footer h4 {
     position: absolute;
     bottom: -4rem;
     left: 0;
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
+
   .meme-howto-modal {
     position: absolute;
-    left: 0;
-    bottom: -17rem;
-    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50rem;
+    height: 30rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    z-index: 1;
   }
 
   .meme-howto-modal-content {
     width: 100%;
-    max-width: 60rem;
-    font-size: 1.7rem;
-    line-height: 2.3rem;
+    height: 100%;
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+
+  .meme-howto-modal-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .meme-howto-modal-close {
+    font-size: 5rem;
   }
 
   .meme-howto-modal-close:focus,
   .meme-howto-modal-close:hover {
-    transform: scale(2.2);
+    transform: scale(1.5);
   }
 
   .meme-form-group--container {
@@ -680,7 +693,7 @@ footer h4 {
   }
 
   #meme {
-    height: 3.5rem;
+    max-height: 3.5rem;
   }
 
   .upload-meme-container label {
