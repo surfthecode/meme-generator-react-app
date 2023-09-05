@@ -5,10 +5,7 @@ const Header = () => {
   return (
     <header className="header">
       <nav>
-        <a
-          href="https://surfthecode.github.io/meme-generator-react-app/"
-          className="logo-link"
-        >
+        <a href="/meme-generator-react-app" className="logo-link">
           <img
             src={logo}
             alt="meme generator logo"
