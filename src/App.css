@@ -543,6 +543,7 @@ footer h4 {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
   }
 
   main {
@@ -659,6 +660,16 @@ footer h4 {
   .meme-howto-modal-close:focus,
   .meme-howto-modal-close:hover {
     transform: scale(1.5);
+  }
+
+  .dim-background {
+    position: fixed;
+    /* top: 0;
+    left: 0; */
+    width: 2000rem;
+    height: 2000rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: -1;
   }
 
   .meme-form-group--container {

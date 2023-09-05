@@ -160,6 +160,7 @@ const Meme = () => {
               {/* TOGGLE list */}
               {showInstructions && (
                 <div className="meme-howto-modal">
+                  <div className="dim-background"></div>
                   <div className="meme-howto-modal-content">
                     <span
                       className="meme-howto-modal-close"
