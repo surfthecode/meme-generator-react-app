@@ -176,13 +176,13 @@ const Meme = () => {
                         list, or upload your own.
                       </li>
                       <li>
-                        &#10149; Add some sparkling fun captions and move them
-                        around.
+                        &#10149; Add some sparkling fun captions, style them and
+                        move them around.
                       </li>
                       <li>
                         {" "}
-                        &#10149; Save or share your masterpiece and try not to
-                        break the internet!😂
+                        &#10149; Save your meme masterpiece and try not to break
+                        the internet!😂
                       </li>
                     </ul>
                   </div>
