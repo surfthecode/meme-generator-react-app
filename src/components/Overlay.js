@@ -34,7 +34,7 @@ function Overlay() {
 
       <div className="overlay-content overlay-content--text">
         <p style={{ padding: "0rem", margin: "0" }}>
-          4. Now you can create a fun top and bottom meme text.
+          4. Now. you can create a funky top and bottom meme text.
         </p>
       </div>
 
@@ -46,7 +46,7 @@ function Overlay() {
 
       <div className="overlay-content overlay-content--save">
         <p style={{ padding: "0rem", margin: "0" }}>
-          6. Save your masterpice and try not to break the internet 🥳
+          6. Save your masterpiece and try not to break the internet 🥳
         </p>
       </div>
 
